@@ -324,6 +324,49 @@ class PlavioHDProvider : MainAPI() {
         }
     }
 
+    /** Source names worth scanning for, longest first; a few short ones are
+     *  also ordinary words in titles, so they only count via the name line. */
+    private val scanNames: List<String> =
+        (PlavioSettings.ALL_SOURCES - setOf("Castle", "Dulo", "Movy", "Dexter") +
+            listOf("CNCVerse", "FlixNest")).sortedByDescending { it.length }
+
+    private val scanAliases = mapOf(
+        "CNCVerse" to "MultiMovies",
+        "FlixNest" to "StreamPlay"
+    )
+
+    /**
+     * The source a stream row belongs to, read off the row itself: the
+     * addon's plain name line ("Title Year Source Quality") names it
+     * directly whenever no configure-page formatter has reshaped that line;
+     * otherwise the name, the file name and the title are scanned for a
+     * known source name. Null when nothing gives the source away — the
+     * caller then files the link under the plugin's own name, as before.
+     */
+    private fun providerFor(row: StreamDto): String? {
+        val nameLine = row.name?.takeIf { it.isNotBlank() }
+        if (nameLine != null) {
+            val m = Regex("""^\S.*?\s+\d{4}\s+(.+?)\s+(?:2160p|1440p|1080p|720p|480p|360p|4K|FHD|HD|SD)\s*$""")
+                .find(nameLine)
+            if (m != null) return m.groupValues[1].trim()
+        }
+        val haystacks = listOfNotNull(
+            nameLine,
+            row.behaviorHints?.filename,
+            row.title
+        )
+        for (hay in haystacks) {
+            for (candidate in scanNames) {
+                val pattern = Regex(
+                    """(?<![A-Za-z0-9])""" + Regex.escape(candidate) + """(?![A-Za-z0-9])""",
+                    RegexOption.IGNORE_CASE
+                )
+                if (pattern.containsMatchIn(hay)) return scanAliases[candidate] ?: candidate
+            }
+        }
+        return null
+    }
+
     /**
      * CloudStream shows one text per link, so compose it here in the plugin:
      * the addon's title block carries the file/release name (first line) and
