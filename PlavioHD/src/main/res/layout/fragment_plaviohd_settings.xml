@@ -1,43 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/settingsRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="24dp"
     tools:context=".SettingsFragment">
 
-    <TextView
-        android:id="@+id/settingsTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/settings_title"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/settingsHint"
+    <LinearLayout
+        android:id="@+id/settingsRoot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/settings_hint" />
+        android:orientation="vertical"
+        android:padding="24dp">
 
-    <EditText
-        android:id="@+id/editAddonUrl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="@string/settings_edit_hint"
-        android:importantForAutofill="no"
-        android:inputType="textUri"
-        android:maxLines="3" />
+        <TextView
+            android:id="@+id/settingsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_title"
+            android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/buttonSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginTop="16dp"
-        android:text="@string/settings_save" />
+        <TextView
+            android:id="@+id/settingsHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/settings_hint" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/editAddonUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/settings_edit_hint"
+            android:importantForAutofill="no"
+            android:inputType="textUri"
+            android:maxLines="3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Sources"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/sourcesCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All" />
+
+            <Button
+                android:id="@+id/buttonDefaults"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Defaults" />
+
+            <Button
+                android:id="@+id/buttonNone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="None" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Default sources" />
+
+        <LinearLayout
+            android:id="@+id/containerDefaultSources"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="More sources" />
+
+        <LinearLayout
+            android:id="@+id/containerMoreSources"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Qualities"
+            android:textSize="17sp" />
+
+        <CheckBox
+            android:id="@+id/quality2160"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4K · 2160p" />
+
+        <CheckBox
+            android:id="@+id/quality1080"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1080p" />
+
+        <CheckBox
+            android:id="@+id/quality720"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="720p" />
+
+        <CheckBox
+            android:id="@+id/quality480"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="480p" />
+
+        <CheckBox
+            android:id="@+id/quality360"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="360p" />
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="16dp"
+            android:text="@string/settings_save" />
+
+    </LinearLayout>
+</ScrollView>
