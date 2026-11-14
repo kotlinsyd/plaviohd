@@ -28,6 +28,9 @@ import com.lagradost.cloudstream3.utils.ExtractorLinkType
 import com.lagradost.cloudstream3.utils.Qualities
 import com.lagradost.cloudstream3.utils.newExtractorLink
 import java.net.URLEncoder
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 
 /**
  * Bridge provider: CloudStream in front, the PlavioHD Stremio addon behind.
@@ -64,14 +67,19 @@ class PlavioHDProvider : MainAPI() {
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
         // Return every row in one response so Home shows the full stacked
         // catalogue (CloudStream otherwise displays only the requested row).
+        // Rows are fetched in parallel so Home opens at the speed of one row.
         val skip = (page - 1) * 20
-        val lists = mainPage.mapNotNull { entry ->
-            val path = if (skip > 0) "${entry.data}/skip=$skip" else entry.data
-            val text = runCatching { app.get("$metaBase/catalog/$path.json").text }
-                .getOrNull() ?: return@mapNotNull null
-            val dto = tryParseJson<CatalogDto>(text) ?: return@mapNotNull null
-            val items = dto.metas.orEmpty().mapNotNull { it.toSearchResponse() }
-            if (items.isEmpty()) null else HomePageList(entry.name, items)
+        val lists = coroutineScope {
+            mainPage.map { entry ->
+                async {
+                    val path = if (skip > 0) "${entry.data}/skip=$skip" else entry.data
+                    val text = runCatching { app.get("$metaBase/catalog/$path.json").text }
+                        .getOrNull() ?: return@async null
+                    val dto = tryParseJson<CatalogDto>(text) ?: return@async null
+                    val items = dto.metas.orEmpty().mapNotNull { it.toSearchResponse() }
+                    if (items.isEmpty()) null else HomePageList(entry.name, items)
+                }
+            }.awaitAll().filterNotNull()
         }
         return newHomePageResponse(lists, lists.isNotEmpty())
     }
@@ -282,9 +290,7 @@ class PlavioHDProvider : MainAPI() {
             val headers = row.behaviorHints?.proxyHeaders?.request.orEmpty()
             val referer = headers.entries
                 .firstOrNull { it.key.equals("Referer", ignoreCase = true) }?.value.orEmpty()
-            val label = row.name?.takeIf { it.isNotBlank() }
-                ?: row.title?.lineSequence()?.firstOrNull()?.takeIf { it.isNotBlank() }
-                ?: name
+            val label = composeLabel(row)
             val isHls = link.substringBefore('?').lowercase().endsWith(".m3u8")
 
             callback(
@@ -320,6 +326,39 @@ class PlavioHDProvider : MainAPI() {
             val lang = sub.lang?.takeIf { it.isNotBlank() } ?: return@forEach
             subtitleCallback(newSubtitleFile(lang, subUrl))
         }
+    }
+
+    /**
+     * CloudStream shows one text per link, so compose it here in the plugin:
+     * the addon's title block carries the file/release name (first line) and
+     * the size (in the tag lines), while the plain name line alone can be
+     * little more than a quality tag under some addon formatters. The addon
+     * itself is untouched; this only changes how the plugin labels its links.
+     */
+    private fun composeLabel(row: StreamDto): String {
+        val lines = row.title?.lineSequence()
+            ?.map { it.trim() }?.filter { it.isNotBlank() }?.toList().orEmpty()
+        val firstLine = lines.firstOrNull()
+        val nameLine = row.name?.takeIf { it.isNotBlank() }
+        val size = lines.firstNotNullOfOrNull { line ->
+            Regex("""\d+(?:\.\d+)?\s?(?:GB|MB)""").find(line)?.value?.replace(" ", "")
+        }
+        val firstIsName = firstLine != null && firstLine.length >= 12 &&
+            !firstLine.contains('·') &&
+            Regex("""[A-Za-z]{3,}""").containsMatchIn(firstLine)
+        val provider = nameLine?.let {
+            Regex("""^\S.*?\s+\d{4}\s+(.+?)\s+(?:2160p|1440p|1080p|720p|480p|360p|4K|FHD|HD|SD)\s*$""")
+                .find(it)?.groupValues?.get(1)
+        }
+        val base = when {
+            firstIsName && provider != null && !firstLine.contains(provider, ignoreCase = true) ->
+                "$provider · $firstLine"
+            firstIsName -> firstLine
+            nameLine != null -> nameLine
+            firstLine != null -> firstLine
+            else -> name
+        }
+        return if (size != null && !base.contains(size, ignoreCase = true)) "$base · $size" else base
     }
 
     private fun parseQuality(row: StreamDto): Int {
