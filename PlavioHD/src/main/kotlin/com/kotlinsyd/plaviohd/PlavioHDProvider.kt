@@ -62,13 +62,18 @@ class PlavioHDProvider : MainAPI() {
     )
 
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
+        // Return every row in one response so Home shows the full stacked
+        // catalogue (CloudStream otherwise displays only the requested row).
         val skip = (page - 1) * 20
-        val path = if (skip > 0) "${request.data}/skip=$skip" else request.data
-        val text = runCatching { app.get("$metaBase/catalog/$path.json").text }
-            .getOrNull() ?: return newHomePageResponse(emptyList(), false)
-        val dto = tryParseJson<CatalogDto>(text) ?: return newHomePageResponse(emptyList(), false)
-        val items = dto.metas.orEmpty().mapNotNull { it.toSearchResponse() }
-        return newHomePageResponse(listOf(HomePageList(request.name, items)), items.isNotEmpty())
+        val lists = mainPage.mapNotNull { entry ->
+            val path = if (skip > 0) "${entry.data}/skip=$skip" else entry.data
+            val text = runCatching { app.get("$metaBase/catalog/$path.json").text }
+                .getOrNull() ?: return@mapNotNull null
+            val dto = tryParseJson<CatalogDto>(text) ?: return@mapNotNull null
+            val items = dto.metas.orEmpty().mapNotNull { it.toSearchResponse() }
+            if (items.isEmpty()) null else HomePageList(entry.name, items)
+        }
+        return newHomePageResponse(lists, lists.isNotEmpty())
     }
 
     private val metaBase = "https://meta.plavio.site"
@@ -76,6 +81,11 @@ class PlavioHDProvider : MainAPI() {
 
     private val addonBase: String
         get() = PlavioSettings.addonBaseUrl
+            .trim()
+            .trimEnd('/')
+            .removeSuffix("/manifest.json")
+            .trimEnd('/')
+            .ifBlank { "https://hd.plavio.site" }
 
     // region JSON shapes (Jackson; unknown fields ignored)
 
