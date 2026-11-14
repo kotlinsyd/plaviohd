@@ -285,7 +285,8 @@ class PlavioHDProvider : MainAPI() {
             val headers = row.behaviorHints?.proxyHeaders?.request.orEmpty()
             val referer = headers.entries
                 .firstOrNull { it.key.equals("Referer", ignoreCase = true) }?.value.orEmpty()
-            val label = composeLabel(row)
+            val provider = providerFor(row)
+            val label = composeLabel(row, provider)
             val isHls = link.substringBefore('?').lowercase().endsWith(".m3u8")
 
             callback(
