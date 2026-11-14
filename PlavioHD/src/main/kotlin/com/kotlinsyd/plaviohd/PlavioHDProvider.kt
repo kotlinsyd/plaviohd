@@ -291,7 +291,7 @@ class PlavioHDProvider : MainAPI() {
 
             callback(
                 newExtractorLink(
-                    source = name,
+                    source = provider ?: name,
                     name = label,
                     url = link,
                     type = if (isHls) ExtractorLinkType.M3U8 else ExtractorLinkType.VIDEO
