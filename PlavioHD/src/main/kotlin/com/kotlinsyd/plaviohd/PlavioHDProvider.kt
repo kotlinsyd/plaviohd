@@ -385,10 +385,6 @@ class PlavioHDProvider : MainAPI() {
         val firstIsName = firstLine != null && firstLine.length >= 12 &&
             !firstLine.contains('·') &&
             Regex("""[A-Za-z]{3,}""").containsMatchIn(firstLine)
-        val provider = nameLine?.let {
-            Regex("""^\S.*?\s+\d{4}\s+(.+?)\s+(?:2160p|1440p|1080p|720p|480p|360p|4K|FHD|HD|SD)\s*$""")
-                .find(it)?.groupValues?.get(1)
-        }
         val base = when {
             firstIsName && provider != null && !firstLine.contains(provider, ignoreCase = true) ->
                 "$provider · $firstLine"
