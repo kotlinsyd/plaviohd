@@ -2,8 +2,12 @@ package com.kotlinsyd.plaviohd
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.lagradost.cloudstream3.HomePageList
+import com.lagradost.cloudstream3.HomePageResponse
 import com.lagradost.cloudstream3.LoadResponse
 import com.lagradost.cloudstream3.MainAPI
+import com.lagradost.cloudstream3.MainPageRequest
+import com.lagradost.cloudstream3.mainPageOf
 import com.lagradost.cloudstream3.Score
 import com.lagradost.cloudstream3.SearchResponse
 import com.lagradost.cloudstream3.ShowStatus
@@ -44,8 +48,27 @@ class PlavioHDProvider : MainAPI() {
     override var name = "PlavioHD"
     override var lang = "en"
 
-    override val hasMainPage = false
+    override val hasMainPage = true
     override val supportedTypes = setOf(TvType.Movie, TvType.TvSeries)
+
+    override val mainPage = mainPageOf(
+        "movie/trending-movies" to "Trending Movies",
+        "series/trending-series" to "Trending Series",
+        "movie/popular-movies" to "Popular Movies",
+        "series/popular-series" to "Popular Series",
+        "series/airing-today-series" to "Airing Today",
+        "movie/critically-acclaimed-movies" to "Critically Acclaimed Movies"
+    )
+
+    override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
+        val skip = (page - 1) * 20
+        val path = if (skip > 0) "${request.data}/skip=$skip" else request.data
+        val text = runCatching { app.get("$metaBase/catalog/$path.json").text }
+            .getOrNull() ?: return HomePageResponse(emptyList(), false)
+        val dto = tryParseJson<CatalogDto>(text) ?: return HomePageResponse(emptyList(), false)
+        val items = dto.metas.orEmpty().mapNotNull { it.toSearchResponse() }
+        return HomePageResponse(listOf(HomePageList(request.name, items)), items.isNotEmpty())
+    }
 
     private val metaBase = "https://meta.plavio.site"
     private val subsBase = "https://subs.plavio.site"
@@ -56,17 +79,24 @@ class PlavioHDProvider : MainAPI() {
     // region JSON shapes (Jackson; unknown fields ignored)
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    data class SearchItemDto(
+    data class MetaItemDto(
         @JsonProperty("id") val id: String? = null,
+        @JsonProperty("imdbId") val imdbId: String? = null,
         @JsonProperty("name") val name: String? = null,
         @JsonProperty("type") val type: String? = null,
         @JsonProperty("poster") val poster: String? = null,
-        @JsonProperty("year") val year: String? = null
+        @JsonProperty("year") val year: String? = null,
+        @JsonProperty("releaseInfo") val releaseInfo: String? = null
     )
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     data class SearchDto(
-        @JsonProperty("results") val results: List<SearchItemDto>? = null
+        @JsonProperty("results") val results: List<MetaItemDto>? = null
+    )
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    data class CatalogDto(
+        @JsonProperty("metas") val metas: List<MetaItemDto>? = null
     )
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -138,28 +168,33 @@ class PlavioHDProvider : MainAPI() {
 
     // endregion
 
+    private fun MetaItemDto.toSearchResponse(): SearchResponse? {
+        val id = id?.takeIf { it.startsWith("tt") }
+            ?: imdbId?.takeIf { it.startsWith("tt") }
+            ?: return null
+        val title = name?.takeIf { it.isNotBlank() } ?: return null
+        val yr = year?.toIntOrNull()
+            ?: releaseInfo?.let { Regex("""\d{4}""").find(it)?.value?.toIntOrNull() }
+        return if (type == "series") {
+            newTvSeriesSearchResponse(title, "$metaBase/meta/series/$id.json", TvType.TvSeries) {
+                this.posterUrl = poster
+                this.year = yr
+            }
+        } else {
+            newMovieSearchResponse(title, "$metaBase/meta/movie/$id.json", TvType.Movie) {
+                this.posterUrl = poster
+                this.year = yr
+            }
+        }
+    }
+
     override suspend fun search(query: String): List<SearchResponse> {
         val encoded = URLEncoder.encode(query, "UTF-8")
         val text = runCatching { app.get("$metaBase/search.json?q=$encoded").text }
             .getOrNull() ?: return emptyList()
         val dto = tryParseJson<SearchDto>(text) ?: return emptyList()
 
-        return dto.results.orEmpty().mapNotNull { item ->
-            val id = item.id?.takeIf { it.startsWith("tt") } ?: return@mapNotNull null
-            val title = item.name?.takeIf { it.isNotBlank() } ?: return@mapNotNull null
-            val year = item.year?.toIntOrNull()
-            if (item.type == "series") {
-                newTvSeriesSearchResponse(title, "$metaBase/meta/series/$id.json", TvType.TvSeries) {
-                    this.posterUrl = item.poster
-                    this.year = year
-                }
-            } else {
-                newMovieSearchResponse(title, "$metaBase/meta/movie/$id.json", TvType.Movie) {
-                    this.posterUrl = item.poster
-                    this.year = year
-                }
-            }
-        }
+        return dto.results.orEmpty().mapNotNull { it.toSearchResponse() }
     }
 
     override suspend fun load(url: String): LoadResponse? {
