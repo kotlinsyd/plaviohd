@@ -88,12 +88,7 @@ class PlavioHDProvider : MainAPI() {
     private val subsBase = "https://subs.plavio.site"
 
     private val addonBase: String
-        get() = PlavioSettings.addonBaseUrl
-            .trim()
-            .trimEnd('/')
-            .removeSuffix("/manifest.json")
-            .trimEnd('/')
-            .ifBlank { "https://hd.plavio.site" }
+        get() = PlavioSettings.effectiveBaseUrl
 
     // region JSON shapes (Jackson; unknown fields ignored)
 
