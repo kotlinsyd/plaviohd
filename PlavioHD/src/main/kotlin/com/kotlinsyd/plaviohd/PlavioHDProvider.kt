@@ -8,6 +8,7 @@ import com.lagradost.cloudstream3.LoadResponse
 import com.lagradost.cloudstream3.MainAPI
 import com.lagradost.cloudstream3.MainPageRequest
 import com.lagradost.cloudstream3.mainPageOf
+import com.lagradost.cloudstream3.newHomePageResponse
 import com.lagradost.cloudstream3.Score
 import com.lagradost.cloudstream3.SearchResponse
 import com.lagradost.cloudstream3.ShowStatus
@@ -64,10 +65,10 @@ class PlavioHDProvider : MainAPI() {
         val skip = (page - 1) * 20
         val path = if (skip > 0) "${request.data}/skip=$skip" else request.data
         val text = runCatching { app.get("$metaBase/catalog/$path.json").text }
-            .getOrNull() ?: return HomePageResponse(emptyList(), false)
-        val dto = tryParseJson<CatalogDto>(text) ?: return HomePageResponse(emptyList(), false)
+            .getOrNull() ?: return newHomePageResponse(emptyList(), false)
+        val dto = tryParseJson<CatalogDto>(text) ?: return newHomePageResponse(emptyList(), false)
         val items = dto.metas.orEmpty().mapNotNull { it.toSearchResponse() }
-        return HomePageResponse(listOf(HomePageList(request.name, items)), items.isNotEmpty())
+        return newHomePageResponse(listOf(HomePageList(request.name, items)), items.isNotEmpty())
     }
 
     private val metaBase = "https://meta.plavio.site"
