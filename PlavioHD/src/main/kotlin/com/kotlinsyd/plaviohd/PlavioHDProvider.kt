@@ -374,7 +374,7 @@ class PlavioHDProvider : MainAPI() {
      * little more than a quality tag under some addon formatters. The addon
      * itself is untouched; this only changes how the plugin labels its links.
      */
-    private fun composeLabel(row: StreamDto): String {
+    private fun composeLabel(row: StreamDto, provider: String?): String {
         val lines = row.title?.lineSequence()
             ?.map { it.trim() }?.filter { it.isNotBlank() }?.toList().orEmpty()
         val firstLine = lines.firstOrNull()
