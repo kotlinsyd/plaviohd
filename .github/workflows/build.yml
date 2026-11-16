@@ -46,7 +46,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/src
           chmod +x gradlew
-          ./gradlew make makePluginsJson
+          ./gradlew make makePluginsJson --stacktrace 2>&1 | tee $GITHUB_WORKSPACE/build-log.txt
           cp **/build/*.cs3 $GITHUB_WORKSPACE/builds
           cp build/plugins.json $GITHUB_WORKSPACE/builds
 
@@ -58,3 +58,17 @@ jobs:
           git add .
           git commit --amend -m "Build $GITHUB_SHA" || exit 0   # do not error if nothing to commit
           git push --force
+
+      # Keep the full Gradle log on the builds branch (build-log.txt) so a
+      # failed build can be diagnosed without the Actions web UI. Runs on
+      # failure too, and stages only the log — never the cleaned cs3 files.
+      - name: Push build log
+        if: always()
+        run: |
+          cp $GITHUB_WORKSPACE/build-log.txt $GITHUB_WORKSPACE/builds/build-log.txt || exit 0
+          cd $GITHUB_WORKSPACE/builds
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add build-log.txt
+          git commit -m "Build log $GITHUB_SHA" || exit 0   # do not error if nothing to commit
+          git push
