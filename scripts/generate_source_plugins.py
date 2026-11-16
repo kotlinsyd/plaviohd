@@ -14,6 +14,9 @@ SoraStream) that is a copy of the template with three small patches:
   * The provider's display name becomes the source name, so its streams
     file under the real source in CloudStream.
   * Its settings sheet title/hint describe the single source.
+  * Its build.gradle.kts points iconUrl at the repo's icon.png (the
+    Plavio weave mark), so CloudStream shows the logo instead of the
+    generic placeholder.
 
 Every patch is an exact-match replacement guarded by a marker; if the
 template drifts, this script fails loudly instead of generating a wrong
@@ -34,6 +37,9 @@ TEMPLATE = ROOT / "PlavioHD"
 DATA = ROOT / "scripts" / "sources.json"
 
 NAME_RE = re.compile(r"^[A-Za-z0-9]+$")
+
+# The Plavio weave mark, committed at the repo root (icon.png on main).
+ICON_URL = "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icon.png"
 
 
 def fail(msg: str) -> "SystemExit":
@@ -66,6 +72,16 @@ def patch_module(module: Path, name: str) -> None:
         'with many sources, powered by the PlavioHD addon."',
         f'description = "The {name} source only, powered by the '
         f'PlavioHD addon."',
+        str(gradle),
+    )
+    # Plugin logo: without iconUrl, CloudStream shows a generic
+    # puzzle-piece placeholder for the plugin.
+    text = replace_exact(
+        text,
+        f'description = "The {name} source only, powered by the '
+        f'PlavioHD addon."',
+        f'description = "The {name} source only, powered by the '
+        f'PlavioHD addon."\n    iconUrl = "{ICON_URL}"',
         str(gradle),
     )
     gradle.write_text(text, encoding="utf-8")

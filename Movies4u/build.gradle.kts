@@ -10,6 +10,7 @@ cloudstream {
     // All of these properties are optional, you can safely remove any of them.
 
     description = "The Movies4u source only, powered by the PlavioHD addon."
+    iconUrl = "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icon.png"
     authors = listOf("Kotlinsyd")
 
     /**
