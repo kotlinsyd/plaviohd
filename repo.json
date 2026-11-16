@@ -1,8 +1,9 @@
 {
   "name": "PlavioHD",
-  "description": "PlavioHD inside CloudStream — one plugin, every source. Made by Kotlinsyd",
+  "description": "PlavioHD inside CloudStream — one plugin per source. Made by Kotlinsyd",
   "manifestVersion": 1,
   "pluginLists": [
     "https://raw.githubusercontent.com/Kotlinsyd/plaviohd/builds/plugins.json"
-  ]
+  ],
+  "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icon.png"
 }
