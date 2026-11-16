@@ -2,13 +2,15 @@
 """
 Generate the per-source PlavioHD CloudStream plugins.
 
-The all-in-one plugin in ../PlavioHD is the template. For every source in
-scripts/sources.json this script creates a sibling module
-PlavioHD-<Source> that is a copy of the template with three small patches:
+The plugin in ../PlavioHD is the template only — it is excluded from the
+build (see "disabled" in settings.gradle.kts) and is never listed as a
+plugin itself. For every source in scripts/sources.json this script
+creates a sibling module named exactly after the source (e.g. 4KHDHub,
+SoraStream) that is a copy of the template with three small patches:
 
   * PlavioSettings.BAKED_SOURCE is set to the source, so the plugin builds
     a /c/ token naming only that source (a pasted personal link in the
-    plugin settings still wins, exactly like the all-in-one).
+    plugin settings still wins).
   * The provider's display name becomes the source name, so its streams
     file under the real source in CloudStream.
   * Its settings sheet title/hint describe the single source.
@@ -62,8 +64,8 @@ def patch_module(module: Path, name: str) -> None:
         text,
         'description = "PlavioHD addon inside CloudStream: movies and series '
         'with many sources, powered by the PlavioHD addon."',
-        f'description = "PlavioHD addon inside CloudStream: the {name} '
-        f'source only, powered by the PlavioHD addon."',
+        f'description = "The {name} source only, powered by the '
+        f'PlavioHD addon."',
         str(gradle),
     )
     gradle.write_text(text, encoding="utf-8")
@@ -120,8 +122,8 @@ def patch_module(module: Path, name: str) -> None:
 
     (module / "GENERATED.md").write_text(
         f"# Generated module — do not edit by hand\n\n"
-        f"This is the per-source **{name}** plugin, generated from the "
-        f"`PlavioHD` template by `scripts/generate_source_plugins.py`.\n"
+        f"This is the **{name}** plugin, generated from the `PlavioHD` "
+        f"template by `scripts/generate_source_plugins.py`.\n"
         f"Edit the template (or `scripts/sources.json`) and re-run the "
         f"script instead.\n",
         encoding="utf-8",
@@ -138,20 +140,22 @@ def main() -> int:
         if not NAME_RE.match(n):
             raise fail(f"source name {n!r} is not plain [A-Za-z0-9]+")
 
-    # Remove previously generated modules so dropped sources disappear.
+    # Remove previously generated modules so dropped/renamed sources
+    # disappear. Generated modules are the ones carrying GENERATED.md;
+    # the template itself never has one.
     for child in sorted(ROOT.iterdir()):
-        if child.is_dir() and child.name.startswith("PlavioHD-") \
+        if child.is_dir() and child != TEMPLATE \
                 and (child / "GENERATED.md").exists():
             shutil.rmtree(child)
 
     for name in names:
-        module = ROOT / f"PlavioHD-{name}"
+        module = ROOT / name
         shutil.copytree(TEMPLATE, module)
         patch_module(module, name)
-        print(f"generated PlavioHD-{name}")
+        print(f"generated {name}")
 
     print(f"{len(names)} per-source plugins generated "
-          f"(+ the PlavioHD all-in-one template).")
+          f"(the PlavioHD template is not a plugin).")
     return 0
 
 

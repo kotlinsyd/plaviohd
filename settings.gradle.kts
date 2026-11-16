@@ -3,7 +3,10 @@ rootProject.name = "CloudstreamPlugins"
 // This file sets what projects are included.
 // All new projects should get automatically included unless specified in the "disabled" variable.
 
-val disabled = listOf<String>()
+// "PlavioHD" is the generator's template only (scripts/generate_source_plugins.py
+// copies it into one module per source). It is not a plugin itself: excluding
+// it here keeps it out of the build and out of plugins.json.
+val disabled = listOf<String>("PlavioHD")
 
 File(rootDir, ".").eachDir { dir ->
     if (!disabled.contains(dir.name) && File(dir, "build.gradle.kts").exists()) {
