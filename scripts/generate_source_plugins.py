@@ -75,8 +75,8 @@ def patch_module(module: Path, name: str) -> None:
     text = settings.read_text(encoding="utf-8")
     text = replace_regex(
         text,
-        r'const val BAKED_SOURCE: String\? = null // GENERATED-BAKED-SOURCE',
-        f'const val BAKED_SOURCE: String? = "{name}" // GENERATED-BAKED-SOURCE',
+        r'val BAKED_SOURCE: String\? = null // GENERATED-BAKED-SOURCE',
+        f'val BAKED_SOURCE: String? = "{name}" // GENERATED-BAKED-SOURCE',
         str(settings),
     )
     settings.write_text(text, encoding="utf-8")

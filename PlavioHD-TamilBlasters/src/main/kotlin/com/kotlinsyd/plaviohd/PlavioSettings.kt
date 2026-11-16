@@ -30,7 +30,7 @@ object PlavioSettings {
      * here; the all-in-one plugin leaves it null and uses the pickers.
      * scripts/generate_source_plugins.py rewrites this one line per plugin.
      */
-    const val BAKED_SOURCE: String? = "TamilBlasters" // GENERATED-BAKED-SOURCE
+    val BAKED_SOURCE: String? = "TamilBlasters" // GENERATED-BAKED-SOURCE
 
     /** Every source the addon offers, in the configure page's order. */
     val ALL_SOURCES: List<String> = listOf(
