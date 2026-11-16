@@ -4,12 +4,13 @@ dependencies {
 }
 
 // Use an integer for version numbers
-version = 7
+version = 8
 
 cloudstream {
     // All of these properties are optional, you can safely remove any of them.
 
     description = "PlavioHD addon inside CloudStream: movies and series with many sources, powered by the PlavioHD addon."
+    iconUrl = "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icon.png"
     authors = listOf("Kotlinsyd")
 
     /**

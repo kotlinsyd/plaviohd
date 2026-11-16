@@ -2,11 +2,11 @@
 """
 Generate the per-source PlavioHD CloudStream plugins.
 
-The plugin in ../PlavioHD is the template only — it is excluded from the
-build (see "disabled" in settings.gradle.kts) and is never listed as a
-plugin itself. For every source in scripts/sources.json this script
-creates a sibling module named exactly after the source (e.g. 4KHDHub,
-SoraStream) that is a copy of the template with three small patches:
+The plugin in ../PlavioHD is the main all-in-one plugin (all sources, with
+the pickers) and also the template for the per-source plugins. For every
+source in scripts/sources.json this script creates a sibling module named
+exactly after the source (e.g. 4KHDHub, SoraStream) that is a copy of the
+template with these small patches:
 
   * PlavioSettings.BAKED_SOURCE is set to the source, so the plugin builds
     a /c/ token naming only that source (a pasted personal link in the
@@ -14,9 +14,12 @@ SoraStream) that is a copy of the template with three small patches:
   * The provider's display name becomes the source name, so its streams
     file under the real source in CloudStream.
   * Its settings sheet title/hint describe the single source.
-  * Its build.gradle.kts points iconUrl at the repo's icon.png (the
-    Plavio weave mark), so CloudStream shows the logo instead of the
-    generic placeholder.
+  * Its version is the source's own "version" in sources.json (default 1).
+  * Its build.gradle.kts iconUrl: when sources.json gives the source an
+    "icon" (a logo file committed in this repo, e.g. icons/4KHDHub.png —
+    that source's own site logo), iconUrl points at that file. Sources
+    without an "icon" keep the template's iconUrl (the Plavio weave mark)
+    untouched.
 
 Every patch is an exact-match replacement guarded by a marker; if the
 template drifts, this script fails loudly instead of generating a wrong
@@ -39,7 +42,10 @@ DATA = ROOT / "scripts" / "sources.json"
 NAME_RE = re.compile(r"^[A-Za-z0-9]+$")
 
 # The Plavio weave mark, committed at the repo root (icon.png on main).
+# The template carries this as its iconUrl; per-source modules keep it
+# unless sources.json gives them their own icon.
 ICON_URL = "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icon.png"
+RAW_BASE = "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/"
 
 
 def fail(msg: str) -> "SystemExit":
@@ -61,11 +67,19 @@ def replace_regex(text: str, pattern: str, new: str, where: str) -> str:
     return out
 
 
-def patch_module(module: Path, name: str) -> None:
-    # build.gradle.kts — fresh v1 line, single-source description.
+def patch_module(module: Path, source: dict) -> None:
+    name = source["name"]
+    version = int(source.get("version", 1))
+    icon_url = ICON_URL
+    if source.get("icon"):
+        icon_url = RAW_BASE + source["icon"]
+
+    # build.gradle.kts — the source's own version, single-source
+    # description, and its own logo when it has one.
     gradle = module / "build.gradle.kts"
     text = gradle.read_text(encoding="utf-8")
-    text = replace_regex(text, r"^version = \d+$", "version = 1", str(gradle))
+    text = replace_regex(text, r"^version = \d+$", f"version = {version}",
+                         str(gradle))
     text = replace_exact(
         text,
         'description = "PlavioHD addon inside CloudStream: movies and series '
@@ -74,14 +88,13 @@ def patch_module(module: Path, name: str) -> None:
         f'PlavioHD addon."',
         str(gradle),
     )
-    # Plugin logo: without iconUrl, CloudStream shows a generic
-    # puzzle-piece placeholder for the plugin.
+    # Plugin logo: the template's iconUrl is the Plavio weave mark. Swap
+    # it for the source's own logo when sources.json carries one; without
+    # iconUrl, CloudStream shows a generic puzzle-piece placeholder.
     text = replace_exact(
         text,
-        f'description = "The {name} source only, powered by the '
-        f'PlavioHD addon."',
-        f'description = "The {name} source only, powered by the '
-        f'PlavioHD addon."\n    iconUrl = "{ICON_URL}"',
+        f'    iconUrl = "{ICON_URL}"',
+        f'    iconUrl = "{icon_url}"',
         str(gradle),
     )
     gradle.write_text(text, encoding="utf-8")
@@ -164,14 +177,20 @@ def main() -> int:
                 and (child / "GENERATED.md").exists():
             shutil.rmtree(child)
 
-    for name in names:
+    for s in sources:
+        if s.get("icon") and not (ROOT / s["icon"]).exists():
+            raise fail(f"source {s['name']!r} names icon {s['icon']!r} "
+                       f"but that file is not in the repo")
+
+    for source in sources:
+        name = source["name"]
         module = ROOT / name
         shutil.copytree(TEMPLATE, module)
-        patch_module(module, name)
+        patch_module(module, source)
         print(f"generated {name}")
 
     print(f"{len(names)} per-source plugins generated "
-          f"(the PlavioHD template is not a plugin).")
+          f"(plus the PlavioHD template itself, the main plugin).")
     return 0
 
 
