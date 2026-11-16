@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_title">PlavioHD · SpaceDom settings</string>
+    <string name="settings_hint">This plugin carries the SpaceDom source only. Pick your qualities right here, or paste your own configured PlavioHD link above (the part before /manifest.json): a filled link always wins, with all your configure-page choices. Clear the field to use SpaceDom only.</string>
+    <string name="settings_edit_hint">https://hd.plavio.site (optional)</string>
+    <string name="settings_save">Save</string>
+</resources>
