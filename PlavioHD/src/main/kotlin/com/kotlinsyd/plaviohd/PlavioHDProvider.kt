@@ -49,7 +49,7 @@ import kotlinx.coroutines.coroutineScope
  */
 class PlavioHDProvider : MainAPI() {
     override var mainUrl = "https://hd.plavio.site"
-    override var name = "PlavioHD"
+    override var name = "PlavioHD" // GENERATED-PROVIDER-NAME
     override var lang = "en"
 
     override val hasMainPage = true
@@ -328,11 +328,10 @@ class PlavioHDProvider : MainAPI() {
      *  also ordinary words in titles, so they only count via the name line. */
     private val scanNames: List<String> =
         (PlavioSettings.ALL_SOURCES - setOf("Castle", "Dulo", "Movy", "Dexter") +
-            listOf("CNCVerse", "FlixNest")).sortedByDescending { it.length }
+            listOf("CNCVerse")).sortedByDescending { it.length }
 
     private val scanAliases = mapOf(
-        "CNCVerse" to "MultiMovies",
-        "FlixNest" to "StreamPlay"
+        "CNCVerse" to "MultiMovies"
     )
 
     /**

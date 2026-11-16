@@ -25,26 +25,33 @@ object PlavioSettings {
 
     const val DEFAULT_ADDON_URL = "https://hd.plavio.site"
 
+    /**
+     * Single-source builds (the per-source plugins) bake their one source
+     * here; the all-in-one plugin leaves it null and uses the pickers.
+     * scripts/generate_source_plugins.py rewrites this one line per plugin.
+     */
+    const val BAKED_SOURCE: String? = null // GENERATED-BAKED-SOURCE
+
     /** Every source the addon offers, in the configure page's order. */
     val ALL_SOURCES: List<String> = listOf(
-        "4KHDHub", "Cinejoy", "Cinezo", "HDHub4u", "KmMovies", "MovieBox",
-        "Movies4u", "MoviesBazar", "MoviesDrive", "MoviesHunt", "NetMirror",
-        "PixalDrain", "SpaceDom", "StreamPlay", "VegaMovies", "VidFast",
-        "Vidrock",
-        "AniKage", "AniZone", "Castle", "CineCalidad", "Dexter", "Dulo",
-        "Einthusan", "HackStore", "HDMovie4", "LaMovie", "MaxVOD",
-        "MovieLinkBD", "MoviesMod", "Movy", "MultiMovies", "Nxsha",
-        "Obejrzyj", "OndaSpanish", "PremiumSmart", "TelegramX",
-        "ToonWorld4All", "UHDMovies", "VAplayer", "VidBolt", "Vidlink",
-        "VidNest", "Way2Movies"
+        "4KHDHub", "Cinejoy", "Cinezo", "Dexter", "HDHub4u", "KmMovies",
+        "Mapple", "MovieBox", "Movies4u", "MoviesBazar", "MoviesDrive",
+        "MoviesHunt", "Movy", "NetMirror", "Nxsha", "SpaceDom",
+        "VegaMovies", "VidFast", "Vidrock",
+        "AniKage", "AniZone", "Castle", "CineCalidad", "Dulo",
+        "Einthusan", "HackStore", "HDMovie4", "KissKH", "LaMovie",
+        "MalluMV", "MaxVOD", "MovieLinkBD", "MoviesMod", "MultiMovies",
+        "Obejrzyj", "OndaSpanish", "PremiumSmart", "SoraStream",
+        "TamilBlasters", "ToonWorld4All", "UHDMovies", "VAplayer",
+        "VidBolt", "Vidlink", "VidNest", "Way2Movies"
     )
 
     /** The addon's default source set — the pickers' starting state. */
     val DEFAULT_SOURCES: Set<String> = setOf(
-        "4KHDHub", "Cinejoy", "Cinezo", "HDHub4u", "KmMovies", "MovieBox",
-        "Movies4u", "MoviesBazar", "MoviesDrive", "MoviesHunt", "NetMirror",
-        "PixalDrain", "SpaceDom", "StreamPlay", "VegaMovies", "VidFast",
-        "Vidrock"
+        "4KHDHub", "Cinejoy", "Cinezo", "Dexter", "HDHub4u", "KmMovies",
+        "Mapple", "MovieBox", "Movies4u", "MoviesBazar", "MoviesDrive",
+        "MoviesHunt", "Movy", "NetMirror", "Nxsha", "SpaceDom",
+        "VegaMovies", "VidFast", "Vidrock"
     )
 
     /** Quality heights the addon can allow, best first. */
@@ -105,9 +112,38 @@ object PlavioSettings {
     }
 
     /**
+     * Qualities only. The per-source plugins save through this so their
+     * settings sheet can never rewrite the shared source-picker state the
+     * all-in-one plugin relies on.
+     */
+    fun saveQualities(context: Context, qualities: Set<Int>) {
+        init(context)
+        val qCsv = ALL_QUALITIES.filter { it in qualities }.joinToString(",")
+        prefs?.edit()?.putString(KEY_QUALITIES, qCsv)?.apply()
+    }
+
+    /** A /c/<token> configured link for the given sources and qualities. */
+    private fun configuredUrl(srcs: List<String>, quals: List<Int>): String {
+        val providersJson = srcs.joinToString(",") { "\"$it\"" }
+        val qsetPart = if (quals.size == ALL_QUALITIES.size) {
+            ""
+        } else {
+            ",\"qset\":[${quals.joinToString(",")}]"
+        }
+        val json = "{\"providers\":[$providersJson]$qsetPart}"
+        val token = Base64.encodeToString(
+            json.toByteArray(Charsets.UTF_8),
+            Base64.URL_SAFE or Base64.NO_PADDING or Base64.NO_WRAP
+        )
+        return "$DEFAULT_ADDON_URL/c/$token"
+    }
+
+    /**
      * The addon base every stream fetch uses: the user's own link when one
-     * is saved; otherwise the plain default link when the pickers sit at
-     * their defaults; otherwise a /c/<token> link built from the pickers.
+     * is saved; otherwise, in a per-source plugin, a /c/<token> link naming
+     * only the baked source; otherwise the plain default link when the
+     * pickers sit at their defaults; otherwise a /c/<token> link built
+     * from the pickers.
      */
     val effectiveBaseUrl: String
         get() {
@@ -115,24 +151,17 @@ object PlavioSettings {
                 .removeSuffix("/manifest.json").trimEnd('/')
             if (raw.startsWith("http")) return raw
 
+            val quals = ALL_QUALITIES.filter { it in selectedQualities }
+
+            val baked = BAKED_SOURCE
+            if (baked != null) return configuredUrl(listOf(baked), quals)
+
             val srcs = ALL_SOURCES.filter { it in selectedSources }
             if (srcs.isEmpty()) return DEFAULT_ADDON_URL
-            val quals = ALL_QUALITIES.filter { it in selectedQualities }
             if (srcs.toSet() == DEFAULT_SOURCES && quals.size == ALL_QUALITIES.size) {
                 return DEFAULT_ADDON_URL
             }
 
-            val providersJson = srcs.joinToString(",") { "\"$it\"" }
-            val qsetPart = if (quals.size == ALL_QUALITIES.size) {
-                ""
-            } else {
-                ",\"qset\":[${quals.joinToString(",")}]"
-            }
-            val json = "{\"providers\":[$providersJson]$qsetPart}"
-            val token = Base64.encodeToString(
-                json.toByteArray(Charsets.UTF_8),
-                Base64.URL_SAFE or Base64.NO_PADDING or Base64.NO_WRAP
-            )
-            return "$DEFAULT_ADDON_URL/c/$token"
+            return configuredUrl(srcs, quals)
         }
 }

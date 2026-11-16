@@ -17,6 +17,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
  * pickers for sources and qualities so nobody has to visit the addon's
  * configure page just to change them. A filled link field always wins;
  * clear it and the pickers decide.
+ *
+ * Per-source plugins (PlavioSettings.BAKED_SOURCE set) hide the source
+ * picker entirely — their one source is fixed — and keep only the link
+ * field and the quality picker.
  */
 class SettingsFragment(private val plugin: PlavioHDPlugin) : BottomSheetDialogFragment() {
 
@@ -64,6 +68,12 @@ class SettingsFragment(private val plugin: PlavioHDPlugin) : BottomSheetDialogFr
         val btnAll: Button? = view.findViewByName("buttonAll")
         val btnDefaults: Button? = view.findViewByName("buttonDefaults")
         val btnNone: Button? = view.findViewByName("buttonNone")
+        val sourcesHeader: TextView? = view.findViewByName("sourcesHeader")
+        val sourcesButtons: LinearLayout? = view.findViewByName("sourcesButtons")
+        val labelDefaults: TextView? = view.findViewByName("labelDefaultSources")
+        val labelMore: TextView? = view.findViewByName("labelMoreSources")
+
+        val baked = PlavioSettings.BAKED_SOURCE
 
         getString("settings_title")?.let { title?.text = it }
         getString("settings_hint")?.let { hint?.text = it }
@@ -91,12 +101,23 @@ class SettingsFragment(private val plugin: PlavioHDPlugin) : BottomSheetDialogFr
             container.addView(box)
             sourceBoxes[name] = box
         }
-        val picked = PlavioSettings.selectedSources
-        for (name in PlavioSettings.ALL_SOURCES) {
-            val isDefault = name in PlavioSettings.DEFAULT_SOURCES
-            addSourceBox(if (isDefault) boxDefaults else boxMore, name, name in picked)
+        if (baked != null) {
+            // Single-source plugin: no picker, the one source is fixed.
+            sourcesHeader?.visibility = View.GONE
+            sourcesButtons?.visibility = View.GONE
+            labelDefaults?.visibility = View.GONE
+            labelMore?.visibility = View.GONE
+            boxDefaults?.visibility = View.GONE
+            boxMore?.visibility = View.GONE
+            count?.text = "This plugin carries the $baked source only."
+        } else {
+            val picked = PlavioSettings.selectedSources
+            for (name in PlavioSettings.ALL_SOURCES) {
+                val isDefault = name in PlavioSettings.DEFAULT_SOURCES
+                addSourceBox(if (isDefault) boxDefaults else boxMore, name, name in picked)
+            }
+            updateCount()
         }
-        updateCount()
 
         btnAll?.setOnClickListener {
             sourceBoxes.values.forEach { it.isChecked = true }
@@ -125,10 +146,15 @@ class SettingsFragment(private val plugin: PlavioHDPlugin) : BottomSheetDialogFr
 
         save?.setOnClickListener {
             PlavioSettings.setAddonBaseUrl(ctx, edit?.text?.toString().orEmpty())
-            val sources = sourceBoxes.filterValues { it.isChecked }.keys
             val qualities = qualityBoxes.filter { it.second?.isChecked == true }
                 .map { it.first }.toSet()
-            PlavioSettings.savePicker(ctx, sources, qualities)
+            if (baked != null) {
+                // Never rewrite the shared source-picker state from here.
+                PlavioSettings.saveQualities(ctx, qualities)
+            } else {
+                val sources = sourceBoxes.filterValues { it.isChecked }.keys
+                PlavioSettings.savePicker(ctx, sources, qualities)
+            }
             dismiss()
         }
     }
