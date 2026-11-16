@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_title">PlavioHD settings</string>
+    <string name="settings_hint">Your PlavioHD addon link. Leave the default for the standard sources, or paste your own configured link (the part before /manifest.json) to use your sources and settings.</string>
+    <string name="settings_edit_hint">https://hd.plavio.site</string>
+    <string name="settings_save">Save</string>
+</resources>

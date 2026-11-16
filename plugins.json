@@ -1,0 +1,968 @@
+[
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/4KHDHub.png",
+        "fileHash": "sha256-e5265e4f73a66e1654513f2880634b692465548b6d1293b6fbc7abd93ed1a13f",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50117,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "4KHDHub",
+        "description": "The 4KHDHub source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/4KHDHub.cs3",
+        "name": "4KHDHub"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/AniKage.png",
+        "fileHash": "sha256-9a09ff77ce5011b7c0dde8b51ee083db95218ec97870fd458cf53b66425b0c22",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50112,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "AniKage",
+        "description": "The AniKage source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/AniKage.cs3",
+        "name": "AniKage"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/AniZone.png",
+        "fileHash": "sha256-20cf0d1dea7fba76ad9098451aba26ed60b839f76b54af39472bc55859688777",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50112,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "AniZone",
+        "description": "The AniZone source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/AniZone.cs3",
+        "name": "AniZone"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/Castle.png",
+        "fileHash": "sha256-0a07d11a4ba4dad94195abb3249d1d92635cc9339d310daf1af6c2b69ae268fc",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50103,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "Castle",
+        "description": "The Castle source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/Castle.cs3",
+        "name": "Castle"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icon.png",
+        "fileHash": "sha256-92cd0daabb7a0ecf042cea32587438a4c8bd154b05a2b0b4d6a796a3c94c9794",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50109,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 1,
+        "internalName": "CineCalidad",
+        "description": "The CineCalidad source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/CineCalidad.cs3",
+        "name": "CineCalidad"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/Cinejoy.png",
+        "fileHash": "sha256-a0c45cfd03e7299e2b01f5dc70a0281603ddb4356c6b5f9aa2b750edb25a6ce6",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50116,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "Cinejoy",
+        "description": "The Cinejoy source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/Cinejoy.cs3",
+        "name": "Cinejoy"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/Cinezo.png",
+        "fileHash": "sha256-01e3b36e39fddfe853a9ee5cb6b1df4b8cd48aeec40dfa7ef42bc43c037d2168",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50105,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "Cinezo",
+        "description": "The Cinezo source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/Cinezo.cs3",
+        "name": "Cinezo"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icon.png",
+        "fileHash": "sha256-aabbf2c503c32e721354491750f650c7245cfd86bc3ed39dd5c3b23653261a61",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50098,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 1,
+        "internalName": "Dexter",
+        "description": "The Dexter source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/Dexter.cs3",
+        "name": "Dexter"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/Dulo.png",
+        "fileHash": "sha256-48ffcadda08a44fb91a2172a5a161b74c1ab77ac0308525f7712268e32bbbd0a",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50091,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "Dulo",
+        "description": "The Dulo source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/Dulo.cs3",
+        "name": "Dulo"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icon.png",
+        "fileHash": "sha256-3047dd56a8fde832b77b3ba64b06f3a422fad546ac1d49e58aef983e153d0319",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50112,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 1,
+        "internalName": "Einthusan",
+        "description": "The Einthusan source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/Einthusan.cs3",
+        "name": "Einthusan"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/HackStore.png",
+        "fileHash": "sha256-2c576f6c8096427d5cc60c47468352e4567f005708a3094ba3f5dcf829ed6d63",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50112,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "HackStore",
+        "description": "The HackStore source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/HackStore.cs3",
+        "name": "HackStore"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/HDHub4u.png",
+        "fileHash": "sha256-34c1b639ce3b007201fe18c74e4335285898573f6f788023df661a3a57761000",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50120,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "HDHub4u",
+        "description": "The HDHub4u source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/HDHub4u.cs3",
+        "name": "HDHub4u"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/HDMovie4.png",
+        "fileHash": "sha256-8e2fca4ea7816cc0059191530e3249230031ad5fc493ef47a59128243ae0f6ef",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50110,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "HDMovie4",
+        "description": "The HDMovie4 source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/HDMovie4.cs3",
+        "name": "HDMovie4"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/KissKH.png",
+        "fileHash": "sha256-05bc67e2a909274b436593039d9911cf5187e69d776142ace295c3c28026366d",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50112,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "KissKH",
+        "description": "The KissKH source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/KissKH.cs3",
+        "name": "KissKH"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/KmMovies.png",
+        "fileHash": "sha256-0642825785d1bd0ce651c42c3743affce4acd2f048713ccfdff2a371fb23d060",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50103,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "KmMovies",
+        "description": "The KmMovies source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/KmMovies.cs3",
+        "name": "KmMovies"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icon.png",
+        "fileHash": "sha256-6f42a26738e9dfa1fcea6d181999b3c69614ebac430dc094c584186587255e08",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50119,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 1,
+        "internalName": "LaMovie",
+        "description": "The LaMovie source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/LaMovie.cs3",
+        "name": "LaMovie"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/MalluMV.png",
+        "fileHash": "sha256-9f95d9465a5b8562fd9d303bb725565f3b1689656332141f5876073e0be2fb86",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50120,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "MalluMV",
+        "description": "The MalluMV source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/MalluMV.cs3",
+        "name": "MalluMV"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/Mapple.png",
+        "fileHash": "sha256-3d1417bc0bbd47a934030b30b83697934a514697f9287e199216d8eeb44d711d",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50099,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "Mapple",
+        "description": "The Mapple source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/Mapple.cs3",
+        "name": "Mapple"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/MaxVOD.png",
+        "fileHash": "sha256-19c16c8222ba98cf0117bd7335493c3ca87026f3020da4000e80bd724839078e",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50114,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "MaxVOD",
+        "description": "The MaxVOD source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/MaxVOD.cs3",
+        "name": "MaxVOD"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/MovieBox.png",
+        "fileHash": "sha256-aec179afa83d5d483a4c384f376ac6bb08bd3c8dfeffd7c5432e9e095c9a0859",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50101,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "MovieBox",
+        "description": "The MovieBox source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/MovieBox.cs3",
+        "name": "MovieBox"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/MovieLinkBD.png",
+        "fileHash": "sha256-02a5d40d8ce507fb42c9413032dc35e868bff7a589a83fa49d5d16731c891329",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50116,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "MovieLinkBD",
+        "description": "The MovieLinkBD source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/MovieLinkBD.cs3",
+        "name": "MovieLinkBD"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icon.png",
+        "fileHash": "sha256-278d50b0eee05ee19f244d3845555afd7e0b19ad806ea935957cde953ea2abeb",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50102,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 1,
+        "internalName": "Movies4u",
+        "description": "The Movies4u source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/Movies4u.cs3",
+        "name": "Movies4u"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/MoviesBazar.png",
+        "fileHash": "sha256-6e029ccb0f3ad9826e462953e361fdba2622cbb98d68e4d824fd623a0fd3c4a5",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50114,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "MoviesBazar",
+        "description": "The MoviesBazar source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/MoviesBazar.cs3",
+        "name": "MoviesBazar"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icon.png",
+        "fileHash": "sha256-c37b42326fb1b172ee201a77e5f42d1682f76baba2594583ece7e7b2f91bcc79",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50115,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 1,
+        "internalName": "MoviesDrive",
+        "description": "The MoviesDrive source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/MoviesDrive.cs3",
+        "name": "MoviesDrive"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icon.png",
+        "fileHash": "sha256-c9b7b369b89bd766dc70d6b6ee3bf1343e1e8f6441c89ae1c153afceb9b9fc8b",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50115,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 1,
+        "internalName": "MoviesHunt",
+        "description": "The MoviesHunt source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/MoviesHunt.cs3",
+        "name": "MoviesHunt"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icon.png",
+        "fileHash": "sha256-dc33ce61ebadecaf55272e5d2a1fd4b756ba81add66f7a6fe2c7e7d31b91a064",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50105,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 1,
+        "internalName": "MoviesMod",
+        "description": "The MoviesMod source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/MoviesMod.cs3",
+        "name": "MoviesMod"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/Movy.png",
+        "fileHash": "sha256-d904e2f6f7503fb1a7d215ce23ba80cc4502307ad560993e3ee82f8ac6922509",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50096,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "Movy",
+        "description": "The Movy source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/Movy.cs3",
+        "name": "Movy"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icon.png",
+        "fileHash": "sha256-fde27b5c63810a2274a7642021b7f9cb0bd7b5b957333dee7df67c08437c13c2",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50110,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 1,
+        "internalName": "MultiMovies",
+        "description": "The MultiMovies source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/MultiMovies.cs3",
+        "name": "MultiMovies"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/NetMirror.png",
+        "fileHash": "sha256-f14381206a2fc5c0ebf79baf76c4ec4b2b8733123ded6fd71360146ac00ee365",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50104,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "NetMirror",
+        "description": "The NetMirror source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/NetMirror.cs3",
+        "name": "NetMirror"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/Nxsha.png",
+        "fileHash": "sha256-d3fe13860bb0d89392291f50d646c1fb645fda12f5c8d3ddc963979876186c95",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50109,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "Nxsha",
+        "description": "The Nxsha source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/Nxsha.cs3",
+        "name": "Nxsha"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/Obejrzyj.png",
+        "fileHash": "sha256-8d0182aba9ee6a234d3657cecca7e355a4ae610ef5c664a50ff4ce1ee7b20d22",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50114,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "Obejrzyj",
+        "description": "The Obejrzyj source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/Obejrzyj.cs3",
+        "name": "Obejrzyj"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icon.png",
+        "fileHash": "sha256-dac86f8c0b2c6512cf792a1785bb280c92d18885366d292b7ae177ce5a4980d3",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50111,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 1,
+        "internalName": "OndaSpanish",
+        "description": "The OndaSpanish source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/OndaSpanish.cs3",
+        "name": "OndaSpanish"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/PremiumSmart.png",
+        "fileHash": "sha256-6677d43f14deda509f0d42a1712d0ef2c31309afb19a97e701e9aa95e8113935",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50110,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "PremiumSmart",
+        "description": "The PremiumSmart source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/PremiumSmart.cs3",
+        "name": "PremiumSmart"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/SoraStream.png",
+        "fileHash": "sha256-6c19155ea41e2bd47925cf2ace3e4458e6a1022c8a6893a2835f82da39bdb0f6",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50118,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "SoraStream",
+        "description": "The SoraStream source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/SoraStream.cs3",
+        "name": "SoraStream"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/SpaceDom.png",
+        "fileHash": "sha256-38766f894b59b5a9b1cbdbb4d45b0d6ce29d2819edfda0740ac12b05750a20fc",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50105,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "SpaceDom",
+        "description": "The SpaceDom source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/SpaceDom.cs3",
+        "name": "SpaceDom"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icon.png",
+        "fileHash": "sha256-62168d8513d5942bd6fab047784a3d9c96247fcbb42dbee7a6984038f6dbe333",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50119,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 1,
+        "internalName": "TamilBlasters",
+        "description": "The TamilBlasters source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/TamilBlasters.cs3",
+        "name": "TamilBlasters"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/ToonWorld4All.png",
+        "fileHash": "sha256-c25f0184572741ceb69aa56add96e4f4c03d899f49d1c628a7c04d2b2acfb75a",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50116,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "ToonWorld4All",
+        "description": "The ToonWorld4All source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/ToonWorld4All.cs3",
+        "name": "ToonWorld4All"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/UHDMovies.png",
+        "fileHash": "sha256-c985a4ca0423d79a2d61182a9ef233c413497e8ca38618ebe904a6b16549e6fd",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50110,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "UHDMovies",
+        "description": "The UHDMovies source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/UHDMovies.cs3",
+        "name": "UHDMovies"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icon.png",
+        "fileHash": "sha256-4339cf1b30bc931246a5db19bd76ce78b8713a52d390753b7476efe85011d23d",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50100,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 1,
+        "internalName": "VAplayer",
+        "description": "The VAplayer source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/VAplayer.cs3",
+        "name": "VAplayer"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/VegaMovies.png",
+        "fileHash": "sha256-49f9420aec5a26d5b964ac58c2dbdf67a68bb2f3e3e3b20b8957cb5f3d1d8184",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50128,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "VegaMovies",
+        "description": "The VegaMovies source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/VegaMovies.cs3",
+        "name": "VegaMovies"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/VidBolt.png",
+        "fileHash": "sha256-1960166c41edcebc74e669faeb8d0ef46ccc0cbc5d008e6033171b01e5b5644c",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50105,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "VidBolt",
+        "description": "The VidBolt source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/VidBolt.cs3",
+        "name": "VidBolt"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/VidFast.png",
+        "fileHash": "sha256-099beb47526b23654d1dba09092eee06b71a2f27f3ee4e94f502d0c8d12924c0",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50105,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "VidFast",
+        "description": "The VidFast source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/VidFast.cs3",
+        "name": "VidFast"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/Vidlink.png",
+        "fileHash": "sha256-1e3aada41bc4206a1c1dd4a6aaa335cf4e5531aa5ea6aa7c4b180d2fb060c54a",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50108,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "Vidlink",
+        "description": "The Vidlink source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/Vidlink.cs3",
+        "name": "Vidlink"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/VidNest.png",
+        "fileHash": "sha256-e7f893409fdcc4fdf4d226ace0b2c33c21939283d22a7a346a62adbff6c96bde",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50115,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "VidNest",
+        "description": "The VidNest source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/VidNest.cs3",
+        "name": "VidNest"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/Vidrock.png",
+        "fileHash": "sha256-65f230a310b7a2f82f7f85a872e657e279f2ac0f1391b0c1c49247e295d8ca54",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50116,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "Vidrock",
+        "description": "The Vidrock source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/Vidrock.cs3",
+        "name": "Vidrock"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/main/icons/Way2Movies.png",
+        "fileHash": "sha256-b58aa722acfc9c65a782964919e9244c63a0ed42528a05aae40e080212eb8520",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/kotlinsyd/plaviohd",
+        "fileSize": 50124,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "Kotlinsyd"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "Way2Movies",
+        "description": "The Way2Movies source only, powered by the PlavioHD addon.",
+        "url": "https://raw.githubusercontent.com/kotlinsyd/plaviohd/builds/Way2Movies.cs3",
+        "name": "Way2Movies"
+    }
+]
